@@ -18,7 +18,8 @@ class RestaurantsController < ApplicationController
       flash[:notice] = "Restaurant was saved successfully"
       redirect_to restaurants_path
     else
-      flash.now[:error] = "There was an error saving this restaurant"
+      # flash.now[:error] = "There was an error saving this restaurant"
+      render :new
     end  
   end
 
@@ -32,7 +33,8 @@ class RestaurantsController < ApplicationController
     if @restaurant.update(restaurant_params)
       redirect_to restaurant_path(@restaurant), notice: "Restaurant was updated correctly"  
     else
-      flash[:error] = "There was an error updating this restaurant"
+      # flash[:error] = "There was an error updating this restaurant"
+      render :edit
     end  
   end
 
@@ -45,6 +47,6 @@ class RestaurantsController < ApplicationController
   end  
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :street, :city, :state, :country, :postal_code)
+    params.require(:restaurant).permit(:name, :street, :city, :state, :country, :postal_code, :neighborhood_id, :category_ids => [])
   end  
 end  

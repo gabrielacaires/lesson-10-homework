@@ -1,0 +1,19 @@
+<h1>Neighborhoods</h1>
+
+<%= link_to 'Create a new neighborhood', new_neighborhood_path %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+  <tbody>
+    <% @neighborhoods.each do |n| %>
+      <tr>
+          <td><%= n.name %></td>
+          <td><%= link_to 'edit', edit_neighborhood_path(n) %></td>
+          <td><%= link_to 'delete', neighborhood_path(n), method: :delete, data: {confirm: "Are you sure you want to delete this neighborhood?"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,6 +1,17 @@
 <%= form_for @restaurant do |f| %>
 
   <p>
+    <% if @restaurant.errors.any? %>
+      <h3><%= pluralize(@restaurant.errors.count, "error") %> prohibited this character from being saved:</h3>
+      <ul>
+        <% @restaurant.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </p>
+
+  <p>
     <%= f.label :name %>
     <%= f.text_field :name %>
   </p>
@@ -28,6 +39,16 @@
   <p>
     <%= f.label :postal_code %>
     <%= f.text_field :postal_code %>
+  </p>
+
+  <p>
+    <%= f.label :neighborhood %>
+    <%= collection_select(:restaurant, :neighborhood_id, Neighborhood.all, :id, :name, prompt: true) %>
+  </p>
+
+  <p>
+    <%= f.label :categories %>
+    <%= collection_check_boxes(:restaurant, :category_ids, Category.all, :id, :name) %>
   </p>
 
   <p>

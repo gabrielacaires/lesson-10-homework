@@ -1,0 +1,21 @@
+<h1>Categories</h1>
+
+<%= link_to 'Create new category', new_category_path %>
+
+<table>
+  <tr>
+    <th>Type of restaurant</th>
+    <th></th>
+  </tr>
+  <tbody>
+    <% @categories.each do |c| %>
+      <tr>
+        <td><%= c.name %></td>
+        <td>
+          <%= link_to 'edit', edit_category_path(c) %>
+          <%= link_to 'delete', category_path(c), method: :delete, data: {confirm: "Are you sure you want to delete this category?"} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

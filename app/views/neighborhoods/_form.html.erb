@@ -1,0 +1,22 @@
+<%= form_for @neighborhood do |n| %>
+  <p>
+    <% if @neighborhood.errors.any? %>
+      <h3><%= pluralize(@neighborhood.errors.count, "error") %> prohibited this character from being saved:</h3>
+      <ul>
+        <% @neighborhood.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </p>
+
+  <p>
+    <%= n.label :name %>
+    <%= n.text_field :name %>
+  </p>
+
+  <p>
+    <%= n.submit %>
+  </p>
+
+<% end %>
